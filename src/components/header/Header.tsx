@@ -19,7 +19,7 @@ export default function Header() {
         "sm:px-4 sm:py-2 xl:text-base";
 
     const botaoCadastrar =
-        "px-3 py-1.5 text-sm font-semibold text-black bg-[#C6FF00] hover:bg-[#b0e000] rounded-lg transition-colors whitespace-nowrap " +
+        "px-3 py-1.5 text-sm font-semibold !text-black bg-[#C6FF00] hover:bg-[#b0e000] rounded-lg transition-colors whitespace-nowrap " +
         "sm:px-4 sm:py-2 xl:text-base";
 
     return (

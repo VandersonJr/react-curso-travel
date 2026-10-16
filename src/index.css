@@ -2,24 +2,143 @@
 @import "tailwindcss";
 
 @theme {
+  /* Tipografia */
   --font-inter: "Inter", sans-serif;
+
+  /* Imagens de fundo */
   --background-image-fundo: url("/src/assets/paisagem.png");
+  --background-image-passagem: url("/src/assets/fundo2.png");
+
+  /* Cores personalizadas */
+  --color-brand-lime: #a3e635;
+  --color-brand-lime-hover: #bef264;
+  --color-brand-dark-bg: #0f0f11;
+  --color-brand-card-bg: #1a1a1e;
+  --color-brand-card-border: #27272a;
+  --color-brand-input-bg: #27272a;
+
+  /* Animação personalizada */
   --animate-decolar: decolar 1s ease-in forwards;
+
+  /* Animação do avião */
+  @keyframes decolar {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 1;
+    }
+
+    30% {
+      transform: translate(15px, -10px) rotate(-10deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(120px, -100px) rotate(-25deg);
+      opacity: 0;
+    }
+  }
 }
 
-@keyframes decolar {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 1;
-  }
+/* Configurações globais */
+:root {
+  font-family: var(--font-inter);
+  color: #f4f4f5;
+  background: var(--color-brand-dark-bg);
 
-  30% {
-    transform: translate(15px, -10px) rotate(-10deg);
-    opacity: 1;
-  }
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+}
 
-  100% {
-    transform: translate(120px, -100px) rotate(-25deg);
-    opacity: 0;
+/* Padronização dos elementos */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-brand-dark-bg);
+}
+
+/* Padronização dos controles */
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Seleção de texto */
+::selection {
+  color: var(--color-brand-dark-bg);
+  background: var(--color-brand-lime);
+}
+
+/* Cores dos controles */
+input[type="range"],
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--color-brand-lime);
+}
+
+/* Container padrão */
+.container-travel {
+  width: min(100% - 2rem, 1280px);
+  margin-inline: auto;
+}
+
+/* Efeito de vidro */
+.glass-panel {
+  border: 1px solid rgb(255 255 255 / 8%);
+  background: rgb(26 26 30 / 85%);
+  backdrop-filter: blur(16px);
+}
+
+/* Barra de rolagem dos resultados */
+.flight-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 transparent;
+}
+
+.flight-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.flight-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: #3f3f46;
+}
+
+/* Acessibilidade: reduzir animações */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
