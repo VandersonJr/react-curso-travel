@@ -1,51 +1,129 @@
 # ✈️ Travel.com
 
-**Planeje sua próxima viagem com praticidade e estilo!**
+> Planeje sua próxima viagem com praticidade, descubra destinos e explore opções de passagens e hospedagens em uma única interface.
 
-O Travel.com é uma aplicação web desenvolvida com React, TypeScript e Tailwind CSS, com a proposta de oferecer uma experiência simples, moderna e intuitiva para o planejamento de viagens.
+O **Travel.com** é uma aplicação web de planejamento de viagens desenvolvida com **React, TypeScript, Vite e Tailwind CSS v4**. O projeto começou como prática de desenvolvimento front-end e evoluiu para uma interface com páginas independentes, navegação entre rotas, formulários de pesquisa, cards de resultados, filtros e telas de autenticação.
 
-O projeto faz parte dos meus estudos de desenvolvimento front-end, com foco na construção de interfaces responsivas, gerenciamento de estados no React, navegação entre páginas e criação de animações utilizando CSS.
-
----
-
-## 📌 Sobre o projeto
-
-O Travel.com tem como objetivo permitir que o usuário informe sua localização de origem, seu destino e a data de ida para iniciar o planejamento de uma viagem.
-
-A interface apresenta um formulário de pesquisa integrado a uma experiência visual temática, com uma animação de decolagem do avião ao iniciar o planejamento.
-
-### Funcionalidades implementadas
-
-- **Informação de origem:** campo para informar a cidade ou local de partida.
-- **Definição do destino:** campo para informar o destino desejado.
-- **Seleção de data:** campo de calendário para selecionar a data de ida, com restrição para datas anteriores ao dia atual.
-- **Validação dos campos:** impede o envio do formulário quando as informações obrigatórias não foram preenchidas.
-- **Navegação com parâmetros:** envia origem, destino e data para a página de passagens por meio da URL.
-- **Animação de decolagem:** animação do ícone de avião ao clicar em "Planejar viagem".
-- **Prevenção de cliques repetidos:** desabilita os campos e o botão durante a animação.
-- **Interface responsiva:** adaptação do formulário para diferentes tamanhos de tela.
-- **Identidade visual personalizada:** fundo temático, tipografia Inter, cores e efeitos visuais com Tailwind CSS.
-
-> **Status do projeto:** em desenvolvimento. A interface e o fluxo inicial de planejamento estão sendo construídos. A pesquisa de passagens reais, incluindo preços, horários e disponibilidade, depende de uma futura integração com uma API ou serviço externo.
+🔗 **Repositório:** [VandersonJr/react-curso-travel](https://github.com/VandersonJr/react-curso-travel)
 
 ---
 
-## 🛠️ Tecnologias utilizadas
+## 📑 Índice
 
-| Tecnologia | Finalidade |
+- [Visão geral](#-visão-geral)
+- [Funcionalidades](#-funcionalidades)
+- [Tecnologias](#-tecnologias)
+- [Rotas da aplicação](#-rotas-da-aplicação)
+- [Estrutura do projeto](#-estrutura-do-projeto)
+- [Executar localmente](#-executar-localmente)
+- [Scripts disponíveis](#-scripts-disponíveis)
+- [Detalhes de implementação](#-detalhes-de-implementação)
+- [Limitações atuais](#-limitações-atuais)
+- [Possíveis evoluções](#-possíveis-evoluções)
+- [Autor](#-autor)
+
+## 🌎 Visão geral
+
+O Travel.com apresenta uma experiência visual voltada ao planejamento de viagens. A interface utiliza um tema escuro, detalhes em verde-lima, tipografia Inter, imagens temáticas, painéis com efeito de vidro e componentes adaptáveis a diferentes tamanhos de tela.
+
+A aplicação está organizada em páginas e componentes reutilizáveis. As pesquisas mantêm seus parâmetros na URL, permitindo que os dados informados sejam representados no endereço da página e recuperados quando a tela é carregada.
+
+## ✨ Funcionalidades
+
+### Página inicial
+- Formulário para informar origem, destino e data de ida.
+- Validação dos campos obrigatórios e restrição da data para não selecionar dias anteriores ao atual.
+- Animação de decolagem no ícone de avião ao iniciar o planejamento.
+- Bloqueio temporário dos controles durante a animação, evitando envios repetidos.
+- Navegação para a página de passagens com os dados da pesquisa na URL.
+- Cards com sugestões de viagens.
+
+### Passagens aéreas
+- Formulário de pesquisa com origem, destino e datas.
+- Suporte visual para modalidades de viagem, passageiros e classe de cabine.
+- Exibição de resultados em cards com informações de voo.
+- Filtros por companhia aérea, quantidade de paradas e faixa de preço.
+- Ordenação dos resultados por critérios disponíveis na interface, como preço, duração e horário.
+- Modal com detalhes do voo selecionado.
+- Cards de destinos sugeridos.
+- Possibilidade de limpar a pesquisa e os parâmetros da URL.
+
+### Hospedagem
+- Pesquisa por destino, datas de check-in e check-out e quantidade de hóspedes.
+- Validação dos campos obrigatórios.
+- Exibição de opções de hospedagem em componentes de resultados.
+- Visualização de detalhes da opção selecionada.
+- Limpeza dos campos de pesquisa e dos parâmetros da URL.
+
+### Destinos
+- Página dedicada à descoberta de destinos.
+- Campo de pesquisa por destino.
+- Exibição de resultados e detalhes do destino selecionado.
+- Cards com imagens e informações de destinos.
+
+### Novidades
+- Página com conteúdo relacionado a viagens.
+- Pesquisa de conteúdo por termo.
+- Exibição de resultados em componentes próprios.
+- Visualização de detalhes de um artigo ou conteúdo selecionado.
+
+### Login e cadastro
+- Páginas de login e cadastro.
+- Formulário de login com e-mail e senha.
+- Formulário de cadastro com nome, e-mail, senha, confirmação de senha e aceite dos termos.
+- Validação de campos obrigatórios e da confirmação de senha.
+- Fluxo de interface para exibição do usuário após a conclusão simulada do formulário.
+
+### Interface e experiência de uso
+- Layout responsivo para diferentes tamanhos de tela.
+- Componentes reutilizáveis para cabeçalho, rodapé, formulários, cards e resultados.
+- Navegação com React Router DOM.
+- Ícones da biblioteca Lucide React.
+- Tema escuro com cores e estilos compartilhados.
+- Animações e efeitos visuais definidos em CSS.
+- Suporte à preferência do sistema por redução de movimento.
+
+## 🧰 Tecnologias
+
+| Tecnologia | Utilização |
 |---|---|
-| [React](https://react.dev/) | Construção da interface com componentes reutilizáveis. |
-| [TypeScript](https://www.typescriptlang.org/) | Tipagem estática e maior segurança no desenvolvimento. |
-| [Vite](https://vite.dev/) | Ferramenta de desenvolvimento e build da aplicação. |
-| [Tailwind CSS v4](https://tailwindcss.com/) | Estilização da interface com classes utilitárias e configuração CSS-first. |
-| [React Router DOM](https://reactrouter.com/) | Navegação entre páginas e envio de parâmetros pela URL. |
-| [Lucide React](https://lucide.dev/) | Ícones utilizados na interface. |
-| CSS Animations | Criação da animação personalizada de decolagem do avião. |
-| Google Fonts — Inter | Tipografia da aplicação. |
+| [React](https://react.dev/) | Construção da interface com componentes e estado. |
+| [TypeScript](https://www.typescriptlang.org/) | Tipagem de dados, propriedades e estados. |
+| [Vite](https://vite.dev/) | Servidor de desenvolvimento e build da aplicação. |
+| [Tailwind CSS v4](https://tailwindcss.com/) | Estilização utilitária e tokens de tema definidos em CSS. |
+| [React Router DOM](https://reactrouter.com/) | Configuração das rotas e navegação entre páginas. |
+| [Lucide React](https://lucide.dev/) | Ícones da interface. |
+| [ESLint](https://eslint.org/) | Análise estática e padronização do código. |
+| [Google Fonts — Inter](https://fonts.google.com/specimen/Inter) | Tipografia da aplicação. |
 
----
+## 🧭 Rotas da aplicação
 
-## 📂 Estrutura do projeto
+As rotas são configuradas em `src/App.tsx`.
+
+| Caminho | Página |
+|---|---|
+| `/` | Página inicial e planejamento de viagem |
+| `/passagens` | Pesquisa e resultados de passagens aéreas |
+| `/hospedagem` | Pesquisa e resultados de hospedagem |
+| `/destinos` | Exploração e pesquisa de destinos |
+| `/novidades` | Conteúdos e novidades sobre viagens |
+| `/login` | Acesso à conta |
+| `/cadastro` | Criação de conta |
+
+Algumas páginas utilizam parâmetros de consulta na URL. Exemplos:
+
+```text
+/passagens?origem=São%20Paulo&destino=Rio%20de%20Janeiro&dataIda=2026-11-15
+/hospedagem?destino=Rio%20de%20Janeiro&checkIn=2026-11-15&checkOut=2026-11-20&hospedes=2
+/destinos?pesquisa=Salvador
+/novidades?pesquisa=praias
+```
+
+Os parâmetros acima são exemplos ilustrativos; os valores dependem das informações preenchidas pelo usuário.
+
+## 📁 Estrutura do projeto
+
+A estrutura abaixo corresponde aos principais arquivos e diretórios existentes no repositório:
 
 ```text
 react-curso-travel/
@@ -54,19 +132,54 @@ react-curso-travel/
 │   └── icons.svg
 ├── src/
 │   ├── assets/
+│   │   ├── download.svg
+│   │   ├── fundo2.png
 │   │   ├── hero.png
+│   │   ├── images.jpg
 │   │   ├── paisagem.png
-│   │   ├── react.svg
 │   │   ├── travel.png
+│   │   ├── react.svg
 │   │   └── vite.svg
 │   ├── components/
+│   │   ├── auth/
+│   │   │   ├── LoginForm.tsx
+│   │   │   └── RegisterForm.tsx
+│   │   ├── destinos/
+│   │   │   └── HasSearchedDestinos.tsx
 │   │   ├── footer/
-│   │   └── header/
-│   │       └── Header.tsx
+│   │   │   └── Footer.tsx
+│   │   ├── header/
+│   │   │   └── Header.tsx
+│   │   ├── hospedagem/
+│   │   │   └── HasSearchedHospedagem.tsx
+│   │   ├── novidades/
+│   │   │   └── HasSearchedNovidades.tsx
+│   │   ├── passagens/
+│   │   │   ├── DestinationCard.tsx
+│   │   │   ├── FlightCard.tsx
+│   │   │   ├── FlightFilters.tsx
+│   │   │   ├── FlightSearch.tsx
+│   │   │   └── HasSearched.tsx
+│   │   └── sugestoes/
+│   │       └── SugestoesViagem.tsx
+│   ├── data/
+│   │   └── Flights.ts
 │   ├── pages/
 │   │   ├── auth/
-│   │   └── home/
-│   │       └── Home.tsx
+│   │   │   ├── Cadastro.tsx
+│   │   │   └── Login.tsx
+│   │   ├── destinos/
+│   │   │   └── Destinos.tsx
+│   │   ├── home/
+│   │   │   └── Home.tsx
+│   │   ├── hospedagem/
+│   │   │   └── Hospedagem.tsx
+│   │   ├── novidades/
+│   │   │   └── Novidades.tsx
+│   │   └── passagens/
+│   │       └── Passagens.tsx
+│   ├── types/
+│   │   └── Travel.ts
 │   ├── App.tsx
 │   ├── index.css
 │   └── main.tsx
@@ -83,231 +196,157 @@ react-curso-travel/
 └── README.md
 ```
 
-**Observação:** a estrutura acima representa a organização registrada durante o desenvolvimento. A página de passagens deverá ser adicionada à pasta `src/pages` quando implementada, caso ainda não exista.
+### Responsabilidade dos principais diretórios
 
-### Organização das pastas
+- `src/pages/`: páginas completas acessadas pelas rotas.
+- `src/components/`: elementos reutilizáveis, formulários e componentes de resultados.
+- `src/data/Flights.ts`: dados de demonstração de voos e destinos e função de formatação de moeda.
+- `src/types/Travel.ts`: tipos TypeScript relacionados a viagens, voos, destinos, passageiros e filtros.
+- `src/assets/`: imagens e recursos visuais importados pela aplicação.
+- `src/index.css`: estilos globais, tema Tailwind, cores, imagens de fundo, animações e ajustes de acessibilidade.
+- `src/App.tsx`: composição geral da aplicação, incluindo cabeçalho, rotas e rodapé.
+- `src/main.tsx`: ponto de entrada que inicializa a aplicação React.
 
-- `public/`: arquivos públicos, como ícones e recursos estáticos.
-- `src/assets/`: imagens e recursos visuais utilizados na interface.
-- `src/components/`: componentes reutilizáveis, como cabeçalho e rodapé.
-- `src/pages/`: páginas da aplicação, organizadas por funcionalidade.
-- `src/pages/auth/`: espaço destinado às páginas de autenticação, como login e cadastro.
-- `src/pages/home/Home.tsx`: página inicial e formulário de planejamento.
-- `src/App.tsx`: componente principal da aplicação.
-- `src/index.css`: estilos globais, configuração do Tailwind CSS, fonte, imagem de fundo e animações.
-- `src/main.tsx`: ponto de entrada da aplicação React.
+## ⚙️ Executar localmente
 
----
+### Pré-requisitos
 
-## ⚙️ Pré-requisitos
+Instale as seguintes ferramentas:
 
-Antes de executar o projeto, instale:
+- [Node.js](https://nodejs.org/) (versão compatível com o Vite e as dependências do projeto).
+- npm, incluído na instalação do Node.js.
+- [Git](https://git-scm.com/) para clonar o repositório.
+- Um editor de código, como [Visual Studio Code](https://code.visualstudio.com/).
 
-- [Node.js](https://nodejs.org/) — versão compatível com as dependências instaladas.
-- npm, normalmente instalado junto com o Node.js.
-- Um editor de código, como o [Visual Studio Code](https://code.visualstudio.com/).
-- Git, caso queira versionar o projeto.
+### 1. Clone o repositório
 
----
-
-## 🚀 Como executar o projeto
-
-### 1. Clonar o repositório
-
-Caso o projeto esteja disponível em um repositório Git:
+Abra o terminal e execute:
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone https://github.com/VandersonJr/react-curso-travel.git
 ```
 
-Entre na pasta do projeto:
+Entre na pasta do projeto — é importante executar os comandos npm dentro do diretório que contém o `package.json`:
 
 ```bash
 cd react-curso-travel
 ```
 
-Substitua `URL_DO_REPOSITORIO` pelo endereço real do repositório.
-
-Se o projeto já estiver em seu computador, basta abrir a pasta correspondente no terminal.
-
-### 2. Instalar as dependências
+### 2. Instale as dependências
 
 ```bash
 npm install
 ```
 
-Esse comando instala as dependências declaradas no `package.json`.
-
-### 3. Executar em ambiente de desenvolvimento
+### 3. Inicie o servidor de desenvolvimento
 
 ```bash
 npm run dev
 ```
 
-O Vite exibirá no terminal o endereço local para acessar a aplicação, geralmente:
+O Vite exibirá no terminal o endereço local da aplicação, normalmente:
 
 ```text
 http://localhost:5173
 ```
 
-### 4. Gerar a versão de produção
+Abra esse endereço no navegador.
+
+### 4. Gere a versão de produção
 
 ```bash
 npm run build
 ```
 
-O comando gera a versão otimizada da aplicação para produção.
+Esse comando executa a verificação de tipos do TypeScript e gera os arquivos otimizados da aplicação.
 
-Para verificar a versão gerada localmente, caso o script esteja disponível no `package.json`:
+Para visualizar localmente a versão de produção:
 
 ```bash
 npm run preview
 ```
 
----
+## 📜 Scripts disponíveis
 
-## 🎨 Configuração do Tailwind CSS v4
+Os comandos abaixo estão definidos no `package.json`:
 
-O projeto utiliza a abordagem CSS-first do Tailwind CSS v4. As configurações de fonte, imagem de fundo e animação são declaradas no arquivo `src/index.css`.
+| Comando | Descrição |
+|---|---|
+| `npm run dev` | Inicia o servidor de desenvolvimento do Vite. |
+| `npm run build` | Verifica os projetos TypeScript e gera o build de produção. |
+| `npm run lint` | Executa o ESLint para analisar o código. |
+| `npm run preview` | Serve localmente o build de produção para conferência. |
 
-Exemplo da configuração utilizada:
+## 🧩 Detalhes de implementação
 
-```css
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+### Tailwind CSS v4 e tema visual
 
-@import "tailwindcss";
+A configuração do Tailwind CSS utiliza a abordagem CSS-first no arquivo `src/index.css`, com `@import "tailwindcss"` e `@theme`. Entre os tokens definidos estão:
 
-@theme {
-  --font-inter: "Inter", sans-serif;
-  --background-image-fundo: url("/src/assets/paisagem.png");
-  --animate-decolar: decolar 1s ease-in forwards;
-}
-```
+- Fonte `Inter`.
+- Imagens de fundo para a página inicial e páginas internas.
+- Cores de marca em verde-lima, fundo escuro, cards, bordas e campos de entrada.
+- Animação personalizada `decolar`, utilizada pelo ícone de avião.
 
-A variável `--font-inter` permite utilizar a classe `font-inter`, enquanto `--background-image-fundo` disponibiliza a classe `bg-fundo`.
+A interface também utiliza classes utilitárias para responsividade, estados de interação, contraste, espaçamento e organização dos componentes.
 
-A variável `--animate-decolar` registra a animação personalizada para utilização pela classe `animate-decolar`.
+### Formulários e estado
 
-### Animação do avião
+As páginas usam o estado do React para acompanhar os valores dos campos, controlar a exibição dos resultados e gerenciar itens selecionados. As pesquisas são validadas antes de serem processadas e os valores relevantes podem ser registrados nos parâmetros da URL.
 
-A animação é definida com CSS:
+### Dados de demonstração
 
-```css
-@keyframes decolar {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 1;
-  }
+Os dados de voos e destinos estão organizados em `src/data/Flights.ts`, enquanto os tipos compartilhados ficam em `src/types/Travel.ts`. Essa separação ajuda a manter os componentes de interface independentes dos dados que exibem.
 
-  30% {
-    transform: translate(15px, -10px) rotate(-10deg);
-    opacity: 1;
-  }
+### Componentização
 
-  100% {
-    transform: translate(120px, -100px) rotate(-25deg);
-    opacity: 0;
-  }
-}
-```
+As telas foram divididas em componentes específicos, por exemplo:
 
-O efeito desloca o ícone diagonalmente para cima e para a direita, altera sua rotação e reduz sua opacidade até desaparecer.
+- `FlightSearch`: formulário de pesquisa de passagens.
+- `FlightFilters`: controles de filtro dos resultados.
+- `FlightCard`: apresentação de um voo.
+- `DestinationCard`: apresentação de um destino.
+- `HasSearched`: área de resultados de passagens após a pesquisa.
+- `LoginForm` e `RegisterForm`: formulários de autenticação.
+- `Header` e `Footer`: elementos compartilhados entre as páginas.
 
----
+Essa organização facilita a manutenção e permite evoluir partes da aplicação sem concentrar toda a lógica em um único arquivo.
 
-## 🧭 Fluxo de planejamento de viagem
+## ⚠️ Limitações atuais
 
-A página inicial utiliza campos controlados pelo React com o hook `useState`.
+O projeto está em desenvolvimento e prioriza, neste momento, a interface e os fluxos front-end. É importante considerar que:
 
-O fluxo funciona da seguinte maneira:
+- **Voos, destinos, hospedagens e conteúdos exibidos são demonstrativos** e não representam necessariamente disponibilidade, preços ou condições em tempo real.
+- **Não há integração configurada com uma API real de companhias aéreas, hotéis ou reservas** no código atual.
+- **Os formulários de login e cadastro simulam o fluxo no front-end**; não existe autenticação segura com servidor, banco de dados ou persistência de contas implementada nesta versão.
+- O preenchimento e a alteração de parâmetros na URL ajudam a representar a pesquisa, mas não substituem a integração com um serviço de dados real.
+- O projeto não conclui compras, reservas ou pagamentos.
 
-1. O usuário informa a origem.
-2. Seleciona ou informa o destino.
-3. Escolhe a data de ida.
-4. Clica em **Planejar viagem**.
-5. A aplicação valida os campos obrigatórios.
-6. O ícone do avião inicia a animação de decolagem.
-7. Após a animação, a aplicação navega para a página de passagens, levando os parâmetros informados na URL.
+Não utilize os resultados demonstrativos como informações comerciais reais.
 
-Exemplo de URL:
+## 🚀 Possíveis evoluções
 
-```text
-/passagens?origem=Potim&destino=Salvador&dataIda=2026-11-20
-```
-
-Os parâmetros são construídos utilizando `URLSearchParams`, que codifica os valores de forma apropriada para a URL.
-
-### Recuperando os parâmetros
-
-Na página de passagens, o React Router permite recuperar as informações enviadas:
-
-```tsx
-import { useSearchParams } from "react-router-dom";
-
-const [searchParams] = useSearchParams();
-
-const origem = searchParams.get("origem") ?? "";
-const destino = searchParams.get("destino") ?? "";
-const dataIda = searchParams.get("dataIda") ?? "";
-```
-
-Esses valores podem ser utilizados para apresentar o trajeto selecionado e preparar uma futura consulta de voos.
-
-**Importante:** a navegação por parâmetros não realiza, por si só, uma pesquisa de passagens aéreas. Para consultar voos reais, será necessário integrar uma API ou um serviço de pesquisa de viagens.
-
----
-
-## 🧩 Conceitos de desenvolvimento aplicados
-
-Durante o desenvolvimento do Travel.com, são praticados conceitos importantes do ecossistema React:
-
-- **Componentização:** organização da interface em componentes.
-- **Hooks:** gerenciamento de estado com `useState` e navegação com `useNavigate`.
-- **Formulários controlados:** sincronização dos campos com o estado da aplicação.
-- **Validação:** verificação de informações obrigatórias antes do envio.
-- **Roteamento:** navegação entre páginas com React Router DOM.
-- **Manipulação de URLs:** transmissão de informações por meio de parâmetros de consulta.
-- **Animações CSS:** utilização de `@keyframes`, transformações e opacidade.
-- **Design responsivo:** adaptação da interface com breakpoints do Tailwind CSS.
-- **Estilização CSS-first:** configuração de tokens e animações com o Tailwind CSS v4.
-- **TypeScript:** utilização de tipos para apoiar a manutenção e a confiabilidade do código.
-
----
-
-## 🔮 Próximas melhorias
-
-As funcionalidades abaixo representam possibilidades de evolução do projeto:
-
-- [ ] Implementar a página de resultados de passagens.
-- [ ] Integrar uma API de voos para consultar preços, horários e disponibilidade.
-- [ ] Exibir resultados com informações sobre companhias aéreas, duração e escalas.
-- [ ] Permitir selecionar a quantidade de passageiros.
-- [ ] Adicionar a opção de data de volta.
-- [ ] Criar filtros e ordenação dos resultados.
-- [ ] Desenvolver páginas de login e cadastro.
-- [ ] Implementar o compartilhamento de viagens com amigos.
-- [ ] Criar uma área para consultar e gerenciar viagens planejadas.
-- [ ] Aprimorar a experiência em dispositivos móveis.
-- [ ] Adicionar testes para os componentes e fluxos principais.
-- [ ] Preparar o projeto para publicação em um serviço de hospedagem.
-
-Essas melhorias dependem das necessidades definidas para as próximas etapas do desenvolvimento.
-
----
+- [ ] Integrar APIs de voos, hospedagem, destinos e notícias.
+- [ ] Implementar autenticação real, validação no servidor e persistência segura de usuários.
+- [ ] Salvar pesquisas e viagens favoritas.
+- [ ] Criar fluxo de reserva e acompanhar seus estados, quando houver integração com provedores.
+- [ ] Aprimorar testes automatizados para componentes e formulários.
+- [ ] Melhorar feedbacks de erro, carregamento e estados vazios.
+- [ ] Realizar auditorias de acessibilidade e desempenho.
+- [ ] Configurar publicação contínua e hospedagem de produção.
 
 ## 👨‍💻 Autor
 
 **Vanderson Junior**
 
-Projeto desenvolvido como parte dos estudos em desenvolvimento front-end, com foco em React, TypeScript e Tailwind CSS.
+Projeto desenvolvido para estudo e prática de desenvolvimento front-end com React, TypeScript e Tailwind CSS.
 
-- GitHub: [(https://github.com/VandersonJr)]
-- LinkedIn: [(https://www.linkedin.com/in/vandersonsjr)]
-- Portfólio: [(https://www.vandersonjrdev.com.br/)]
+- **GitHub:** [VandersonJr](https://github.com/VandersonJr)
+- **LinkedIn:** [Vanderson Junior](https://www.linkedin.com/in/vandersonsjr)
+- **Portfólio:** [vandersonjrdev.com.br](https://www.vandersonjrdev.com.br/)
 
 ---
 
 ## 📄 Licença
 
-Este projeto possui finalidade educacional e de aprendizado. Uma licença específica poderá ser definida conforme a intenção de distribuição e reutilização do código.
-
+Este repositório não declara uma licença de distribuição específica no momento. Antes de reutilizar ou redistribuir o código, verifique as condições aplicáveis ao repositório.
