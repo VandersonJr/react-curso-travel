@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRightLeft, CalendarDays, MapPin, Plane, Search, Users } from "lucide-react";
 
 import type { Passengers, TripType } from "../../types/Travel";
@@ -28,15 +27,20 @@ export default function FlightSearch({
     const [tripType, setTripType] = useState<TripType>("round");
     const [origin, setOrigin] = useState(initialOrigin);
     const [destination, setDestination] = useState(initialDestination);
-    const [departureDate, setDepartureDate] = useState(
-        initialDate || "2026-11-15"
-    );
+    const [departureDate, setDepartureDate] = useState(initialDate);
     const [returnDate, setReturnDate] = useState("2026-11-22");
     const [passengers, setPassengers] = useState<Passengers>({
         adults: 1,
         children: 0,
     });
     const [cabin, setCabin] = useState("Econômica");
+
+    // Atualiza os inputs caso os parâmetros da URL mudem (ex: nova busca vinda da Home)
+    useEffect(() => {
+        setOrigin(initialOrigin);
+        setDestination(initialDestination);
+        setDepartureDate(initialDate);
+    }, [initialOrigin, initialDestination, initialDate]);
 
     function swapAirports() {
         setOrigin(destination);
@@ -81,7 +85,7 @@ export default function FlightSearch({
                         type="button"
                         onClick={() => setTripType(option.value as TripType)}
                         className={`rounded-full px-4 py-2 text-sm font-semibold transition ${tripType === option.value
-                            ? "bg-brand text-dark-bg"
+                            ? "bg-brand-lime text-brand-dark-bg"
                             : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
                             }`}
                     >
@@ -97,13 +101,13 @@ export default function FlightSearch({
                     </span>
                     <MapPin
                         size={18}
-                        className="absolute left-4 top-[42px] text-brand"
+                        className="absolute left-4 top-[42px] text-brand-lime"
                     />
                     <input
                         value={origin}
                         onChange={(event) => setOrigin(event.target.value)}
                         placeholder="Cidade ou aeroporto"
-                        className="w-full rounded-xl border border-card-border bg-input-bg py-3.5 pl-11 pr-3 text-sm outline-none transition focus:border-brand"
+                        className="w-full rounded-xl border border-brand-card-border bg-brand-input-bg py-3.5 pl-11 pr-3 text-sm text-white outline-none transition focus:border-brand-lime"
                     />
                 </label>
 
@@ -113,7 +117,7 @@ export default function FlightSearch({
                         onClick={swapAirports}
                         aria-label="Inverter origem e destino"
                         title="Inverter origem e destino"
-                        className="mb-1 rounded-full border border-card-border bg-zinc-800 p-3 text-brand transition hover:bg-zinc-700"
+                        className="mb-1 rounded-full border border-brand-card-border bg-zinc-800 p-3 text-brand-lime transition hover:bg-zinc-700"
                     >
                         <ArrowRightLeft size={19} />
                     </button>
@@ -125,13 +129,13 @@ export default function FlightSearch({
                     </span>
                     <Plane
                         size={18}
-                        className="absolute left-4 top-[42px] text-brand"
+                        className="absolute left-4 top-[42px] text-brand-lime"
                     />
                     <input
                         value={destination}
                         onChange={(event) => setDestination(event.target.value)}
                         placeholder="Para onde você vai?"
-                        className="w-full rounded-xl border border-card-border bg-input-bg py-3.5 pl-11 pr-3 text-sm outline-none transition focus:border-brand"
+                        className="w-full rounded-xl border border-brand-card-border bg-brand-input-bg py-3.5 pl-11 pr-3 text-sm text-white outline-none transition focus:border-brand-lime"
                     />
                 </label>
 
@@ -141,13 +145,13 @@ export default function FlightSearch({
                     </span>
                     <CalendarDays
                         size={18}
-                        className="absolute left-4 top-[42px] text-brand"
+                        className="absolute left-4 top-[42px] text-brand-lime"
                     />
                     <input
                         type="date"
                         value={departureDate}
                         onChange={(event) => setDepartureDate(event.target.value)}
-                        className="w-full rounded-xl border border-card-border bg-input-bg py-3.5 pl-11 pr-2 text-sm text-white outline-none focus:border-brand"
+                        className="w-full rounded-xl border border-brand-card-border bg-brand-input-bg py-3.5 pl-11 pr-2 text-sm text-white outline-none focus:border-brand-lime"
                     />
                 </label>
 
@@ -157,22 +161,22 @@ export default function FlightSearch({
                     </span>
                     <CalendarDays
                         size={18}
-                        className="absolute left-4 top-[42px] text-brand"
+                        className="absolute left-4 top-[42px] text-brand-lime"
                     />
                     <input
                         type="date"
                         value={returnDate}
                         disabled={tripType === "oneWay"}
                         onChange={(event) => setReturnDate(event.target.value)}
-                        className="w-full rounded-xl border border-card-border bg-input-bg py-3.5 pl-11 pr-2 text-sm text-white outline-none focus:border-brand disabled:opacity-40"
+                        className="w-full rounded-xl border border-brand-card-border bg-brand-input-bg py-3.5 pl-11 pr-2 text-sm text-white outline-none focus:border-brand-lime disabled:opacity-40"
                     />
                 </label>
             </div>
 
             <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <div className="rounded-xl border border-card-border bg-input-bg p-3">
+                <div className="rounded-xl border border-brand-card-border bg-brand-input-bg p-3">
                     <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                        <Users size={16} />
+                        <Users size={16} className="text-brand-lime" />
                         Passageiros
                     </div>
 
@@ -244,26 +248,26 @@ export default function FlightSearch({
                     </div>
                 </div>
 
-                <label className="block rounded-xl border border-card-border bg-input-bg p-3">
+                <label className="block rounded-xl border border-brand-card-border bg-brand-input-bg p-3">
                     <span className="mb-3 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
                         Classe
                     </span>
                     <select
                         value={cabin}
                         onChange={(event) => setCabin(event.target.value)}
-                        className="w-full bg-transparent text-sm text-white outline-none"
+                        className="w-full bg-transparent text-sm text-white outline-none cursor-pointer"
                     >
-                        <option className="bg-zinc-900">Econômica</option>
-                        <option className="bg-zinc-900">Econômica Premium</option>
-                        <option className="bg-zinc-900">Executiva</option>
-                        <option className="bg-zinc-900">Primeira Classe</option>
+                        <option className="bg-zinc-900" value="Econômica">Econômica</option>
+                        <option className="bg-zinc-900" value="Econômica Premium">Econômica Premium</option>
+                        <option className="bg-zinc-900" value="Executiva">Executiva</option>
+                        <option className="bg-zinc-900" value="Primeira Classe">Primeira Classe</option>
                     </select>
                 </label>
 
                 <button
                     type="button"
                     onClick={handleSearch}
-                    className="flex min-h-16 items-center justify-center gap-3 rounded-xl bg-brand px-5 py-4 font-bold text-dark-bg transition hover:bg-brand-hover"
+                    className="flex min-h-16 items-center justify-center gap-3 rounded-xl bg-brand-lime px-5 py-4 font-bold text-brand-dark-bg transition hover:bg-brand-lime-hover shadow-lg shadow-brand-lime/10"
                 >
                     <Search size={20} />
                     Buscar passagens
