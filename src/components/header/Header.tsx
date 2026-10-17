@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Plane, Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Plane, Menu, X, User, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const links = [
     { to: "/passagens", label: "Passagens" },
@@ -11,6 +11,36 @@ const links = [
 
 export default function Header() {
     const [menuAberto, setMenuAberto] = useState(false);
+    const [usuarioLogado, setUsuarioLogado] = useState<string | null>(null);
+    const navigate = useNavigate();
+
+    // Função para checar se há usuário logado no localStorage
+    const verificarUsuario = () => {
+        const usuario = localStorage.getItem("travel_user_name") || localStorage.getItem("travel_user_email");
+        setUsuarioLogado(usuario);
+    };
+
+    useEffect(() => {
+        verificarUsuario();
+
+        // Ouve eventos personalizados ou mudanças de storage para atualizar o header em tempo real
+        window.addEventListener("storage", verificarUsuario);
+        window.addEventListener("authChange", verificarUsuario);
+
+        return () => {
+            window.removeEventListener("storage", verificarUsuario);
+            window.removeEventListener("authChange", verificarUsuario);
+        };
+    }, []);
+
+    const fazerLogout = () => {
+        localStorage.removeItem("travel_user_name");
+        localStorage.removeItem("travel_user_email");
+        setUsuarioLogado(null);
+        window.dispatchEvent(new Event("authChange")); // Notifica a mudança
+        navigate("/");
+        setMenuAberto(false);
+    };
 
     const fecharMenu = () => setMenuAberto(false);
 
@@ -27,7 +57,6 @@ export default function Header() {
             <div className="mx-auto flex w-full max-w-screen-2xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4 lg:px-8 xl:px-12 2xl:px-16">
                 {/* Lado esquerdo: logo e navegação */}
                 <div className="flex items-center gap-4 lg:gap-8 xl:gap-12">
-                    {/* Logo */}
                     <Link
                         to="/"
                         onClick={fecharMenu}
@@ -39,7 +68,6 @@ export default function Header() {
                         </span>
                     </Link>
 
-                    {/* Navegação desktop (a partir do lg) */}
                     <nav className="hidden items-center gap-5 text-sm font-medium text-gray-300 lg:flex xl:gap-8 xl:text-base">
                         {links.map((link) => (
                             <Link
@@ -55,14 +83,32 @@ export default function Header() {
 
                 {/* Lado direito: ações e botão do menu */}
                 <div className="flex items-center gap-2 sm:gap-3 xl:gap-4">
-                    {/* Botões de login/cadastro (a partir do sm) */}
-                    <div className="hidden items-center gap-2 sm:flex sm:gap-3 xl:gap-4">
-                        <Link to="/login" className={botaoEntrar}>
-                            Entrar
-                        </Link>
-                        <Link to="/cadastro" className={botaoCadastrar}>
-                            Cadastrar-se
-                        </Link>
+                    {/* Exibe o perfil do usuário ou os botões de login/cadastro */}
+                    <div className="hidden items-center gap-3 sm:flex">
+                        {usuarioLogado ? (
+                            <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 px-3 py-1.5 text-sm font-medium text-white">
+                                    <User size={16} className="text-[#C6FF00]" />
+                                    <span className="max-w-[150px] truncate">{usuarioLogado}</span>
+                                </div>
+                                <button
+                                    onClick={fazerLogout}
+                                    title="Sair da conta"
+                                    className="flex items-center justify-center rounded-xl bg-red-500/10 border border-red-500/20 p-2 text-red-400 transition-colors hover:bg-red-500/20"
+                                >
+                                    <LogOut size={16} />
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex items-center gap-2 sm:gap-3 xl:gap-4">
+                                <Link to="/login" className={botaoEntrar}>
+                                    Entrar
+                                </Link>
+                                <Link to="/cadastro" className={botaoCadastrar}>
+                                    Cadastrar-se
+                                </Link>
+                            </div>
+                        )}
                     </div>
 
                     {/* Botão hambúrguer (abaixo do lg) */}
@@ -98,22 +144,40 @@ export default function Header() {
                         ))}
                     </nav>
 
-                    {/* Botões dentro do menu, só no mobile (< sm) */}
-                    <div className="mt-3 flex flex-col gap-2 border-t border-white/10 pt-4 sm:hidden">
-                        <Link
-                            to="/login"
-                            onClick={fecharMenu}
-                            className="rounded-lg border border-white/20 px-4 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10"
-                        >
-                            Entrar
-                        </Link>
-                        <Link
-                            to="/cadastro"
-                            onClick={fecharMenu}
-                            className="rounded-lg bg-[#C6FF00] px-4 py-2.5 text-center text-sm font-semibold text-black transition-colors hover:bg-[#b0e000]"
-                        >
-                            Cadastrar-se
-                        </Link>
+                    {/* Área de autenticação no menu mobile */}
+                    <div className="mt-3 flex flex-col gap-2 border-t border-white/10 pt-4">
+                        {usuarioLogado ? (
+                            <div className="flex flex-col gap-2">
+                                <div className="flex items-center gap-2 px-2 py-2 text-sm font-medium text-white">
+                                    <User size={16} className="text-[#C6FF00]" />
+                                    <span>{usuarioLogado}</span>
+                                </div>
+                                <button
+                                    onClick={fazerLogout}
+                                    className="flex items-center justify-center gap-2 rounded-lg bg-red-500/10 border border-red-500/20 px-4 py-2.5 text-center text-sm font-medium text-red-400 transition-colors hover:bg-red-500/20"
+                                >
+                                    <LogOut size={16} />
+                                    Sair da conta
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex flex-col gap-2">
+                                <Link
+                                    to="/login"
+                                    onClick={fecharMenu}
+                                    className="rounded-lg border border-white/20 px-4 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-white/10"
+                                >
+                                    Entrar
+                                </Link>
+                                <Link
+                                    to="/cadastro"
+                                    onClick={fecharMenu}
+                                    className="rounded-lg bg-[#C6FF00] px-4 py-2.5 text-center text-sm font-semibold text-black transition-colors hover:bg-[#b0e000]"
+                                >
+                                    Cadastrar-se
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}
