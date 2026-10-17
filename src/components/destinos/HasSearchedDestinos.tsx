@@ -41,7 +41,7 @@ const sampleDestinationsList: DestinationItem[] = [
         description: "Descubra a história, a gastronomia única e o charme europeu à beira do Tejo.",
         price: 2800,
         images: [
-            "https://images.unsplash.com/photo-1513603523312-36c927f8a91c?auto=format&fit=crop&w=600&q=80",
+            "https://globalreceptivo.com/wp-content/uploads/2016/07/LISBOA-1.jpg",
             "https://images.unsplash.com/photo-1548711645-22595080b0d3?auto=format&fit=crop&w=600&q=80",
         ],
     },
