@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Newspaper, Search, Trash2, X, Calendar, Tag, ArrowRight } from "lucide-react";
+import { Newspaper, Search, Trash2, X, Calendar, Tag } from "lucide-react";
 import HasSearchedNovidades from "../../components/novidades/HasSearchedNovidades";
 
 interface SearchNovidadesInfo {

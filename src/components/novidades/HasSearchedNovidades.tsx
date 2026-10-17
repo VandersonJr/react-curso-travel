@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { Newspaper, ArrowRight, Trash2, Calendar, Tag } from "lucide-react";
 
 interface Article {
@@ -13,7 +13,7 @@ interface Article {
 const sampleArticles: Article[] = [
     {
         id: "n1",
-        title: "Novas rotas internacionais directas com descontos exclusivos",
+        title: "Novas rotas internacionais diretas com descontos exclusivos",
         category: "Promoções",
         date: "14 de Outubro, 2026",
         summary: "A Travel.com anuncia parcerias com novas companhias aéreas para oferecer voos semanais para a Europa com preços imperdíveis.",

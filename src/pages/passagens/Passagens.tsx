@@ -63,7 +63,8 @@ const Passagens = () => {
     const [hasSearched, setHasSearched] = useState<boolean>(initial.hasSearched);
 
     const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
-    const [selectedDestination, setSelectedDestination] = useState<Destination | null>(null);
+    const [, setSelectedDestination] =
+        useState<Destination | null>(null);
 
     function handleSearch(data: SearchInfo) {
         setSearchInfo(data);

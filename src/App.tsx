@@ -7,7 +7,7 @@ import Novidades from "./pages/novidades/Novidades";
 import Login from "./pages/auth/Login";
 import Cadastro from "./pages/auth/Cadastro";
 import Footer from "./components/footer/Footer";
-import { BrowserRouter as Router, Route, Routes, BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (

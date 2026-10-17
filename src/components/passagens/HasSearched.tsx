@@ -7,7 +7,7 @@ import type {
     SortOption,
 } from "../../types/Travel";
 
-import { sampleFlights, formatCurrency } from "../../data/Flights";
+import { sampleFlights } from "../../data/Flights";
 import FlightFilters from "./FlightFilters";
 import FlightCard from "./FlightCard";
 
