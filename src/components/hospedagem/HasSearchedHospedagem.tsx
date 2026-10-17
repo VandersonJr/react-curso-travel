@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { ArrowDownUp, MapPin, Star, Building2 } from "lucide-react";
+import { ArrowDownUp, MapPin, Star, Building2, Trash2 } from "lucide-react";
 
 import { formatCurrency } from "../../data/Flights";
 
@@ -56,9 +56,14 @@ interface SearchHospedagemInfo {
 interface HasSearchedHospedagemProps {
     searchInfo: SearchHospedagemInfo;
     onSelectHotel: (hotel: Hotel) => void;
+    onClearSearch: () => void;
 }
 
-export default function HasSearchedHospedagem({ searchInfo, onSelectHotel }: HasSearchedHospedagemProps) {
+export default function HasSearchedHospedagem({
+    searchInfo,
+    onSelectHotel,
+    onClearSearch,
+}: HasSearchedHospedagemProps) {
     const [maxPrice, setMaxPrice] = useState(2000);
     const [sortBy, setSortBy] = useState<"price" | "rating">("price");
 
@@ -84,9 +89,20 @@ export default function HasSearchedHospedagem({ searchInfo, onSelectHotel }: Has
         <section id="ofertas-hospedagem" className="container-travel py-12 animate-fadeIn">
             <div className="mb-8 rounded-3xl border border-brand-card-border bg-brand-card-bg/90 p-6 backdrop-blur-md flex flex-col justify-between gap-5 lg:flex-row lg:items-center shadow-xl">
                 <div>
-                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-lime">
-                        Hospedagens Disponíveis
-                    </p>
+                    <div className="flex items-center gap-3 mb-2">
+                        <p className="text-xs font-bold uppercase tracking-wider text-brand-lime">
+                            Hospedagens Disponíveis
+                        </p>
+                        <button
+                            type="button"
+                            onClick={onClearSearch}
+                            className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-800 px-2.5 py-1 text-xs font-semibold text-zinc-300 transition hover:bg-zinc-700 hover:text-white"
+                        >
+                            <Trash2 size={12} />
+                            Limpar busca
+                        </button>
+                    </div>
+
                     <h2 className="text-2xl font-extrabold sm:text-3xl text-white">
                         Opções em {searchInfo.destination || "Destino selecionado"}
                     </h2>
@@ -112,7 +128,6 @@ export default function HasSearchedHospedagem({ searchInfo, onSelectHotel }: Has
             </div>
 
             <div className="grid items-start gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
-                {/* Filtros simples */}
                 <aside className="glass-panel h-fit rounded-2xl p-5">
                     <h3 className="mb-4 font-semibold">Filtrar por Preço</h3>
                     <div className="mb-3 flex items-center justify-between text-sm">

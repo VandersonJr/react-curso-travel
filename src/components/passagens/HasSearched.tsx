@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { ArrowDownUp, ArrowRight, Plane } from "lucide-react";
+import { ArrowDownUp, ArrowRight, Plane, Trash2 } from "lucide-react";
 
 import type {
     Flight,
@@ -24,9 +24,10 @@ interface SearchInfo {
 interface HasSearchedProps {
     searchInfo: SearchInfo;
     onSelectFlight: (flight: Flight) => void;
+    onClearSearch: () => void;
 }
 
-export default function HasSearched({ searchInfo, onSelectFlight }: HasSearchedProps) {
+export default function HasSearched({ searchInfo, onSelectFlight, onClearSearch }: HasSearchedProps) {
     const [filters, setFilters] = useState<Filters>({
         stops: [0, 1],
         airlines: ["LATAM", "GOL", "Azul"],
@@ -76,9 +77,19 @@ export default function HasSearched({ searchInfo, onSelectFlight }: HasSearchedP
         >
             <div className="mb-8 rounded-3xl border border-brand-card-border bg-brand-card-bg/90 p-6 backdrop-blur-md flex flex-col justify-between gap-5 lg:flex-row lg:items-center shadow-xl">
                 <div>
-                    <p className="mb-2 text-xs font-bold uppercase tracking-wider text-brand-lime">
-                        Resultados da Busca
-                    </p>
+                    <div className="flex items-center gap-3 mb-2">
+                        <p className="text-xs font-bold uppercase tracking-wider text-brand-lime">
+                            Resultados da Busca
+                        </p>
+                        <button
+                            type="button"
+                            onClick={onClearSearch}
+                            className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-800 px-2.5 py-1 text-xs font-semibold text-zinc-300 transition hover:bg-zinc-700 hover:text-white"
+                        >
+                            <Trash2 size={12} />
+                            Limpar busca
+                        </button>
+                    </div>
 
                     <h2 id="titulo-resultados" className="text-2xl font-extrabold sm:text-3xl text-white">
                         Passagens para sua viagem

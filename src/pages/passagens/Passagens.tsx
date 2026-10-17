@@ -2,10 +2,10 @@ import { useState } from "react";
 import {
     ArrowDownUp,
     Headphones,
-    Plane,
     ShieldCheck,
     X,
     Zap,
+    Trash2,
 } from "lucide-react";
 
 import type {
@@ -13,7 +13,7 @@ import type {
     Flight,
     Passengers,
     TripType,
-} from "../../types/Travel"; // Ajuste o caminho relativo conforme sua estrutura de pastas
+} from "../../types/Travel";
 
 import {
     destinations,
@@ -88,6 +88,20 @@ const Passagens = () => {
         }, 100);
     }
 
+    function handleClearSearch() {
+        setSearchInfo({
+            origin: "",
+            destination: "",
+            departureDate: "",
+            returnDate: "",
+            tripType: "round",
+            passengers: { adults: 1, children: 0 },
+            cabin: "Econômica",
+        });
+        setHasSearched(false);
+        window.history.replaceState(null, "", window.location.pathname);
+    }
+
     function formatDate(date: string) {
         if (!date) return "Data não selecionada";
         return new Date(`${date}T12:00:00`).toLocaleDateString("pt-BR", {
@@ -120,7 +134,20 @@ const Passagens = () => {
                             </p>
                         </div>
 
-                        <div id="buscar-passagens">
+                        <div id="buscar-passagens" className="relative">
+                            {hasSearched && (
+                                <div className="absolute -top-12 right-0">
+                                    <button
+                                        type="button"
+                                        onClick={handleClearSearch}
+                                        className="flex items-center gap-2 rounded-xl bg-zinc-900/90 border border-zinc-700 px-3 py-1.5 text-xs font-semibold text-zinc-300 transition hover:bg-zinc-800 hover:text-white shadow-md"
+                                    >
+                                        <Trash2 size={14} className="text-brand-lime" />
+                                        Limpar formulário
+                                    </button>
+                                </div>
+                            )}
+
                             <FlightSearch
                                 key={`${searchInfo.origin}-${searchInfo.destination}-${searchInfo.departureDate}`}
                                 initialOrigin={searchInfo.origin}
@@ -152,6 +179,7 @@ const Passagens = () => {
                     <HasSearched
                         searchInfo={searchInfo}
                         onSelectFlight={setSelectedFlight}
+                        onClearSearch={handleClearSearch}
                     />
                 )}
 
@@ -181,7 +209,7 @@ const Passagens = () => {
                 </section>
             </main>
 
-            {/* Modal: detalhes da passagem */}
+            {/* Modal de detalhes da passagem */}
             {selectedFlight && (
                 <div
                     className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/75 p-4 backdrop-blur-sm"

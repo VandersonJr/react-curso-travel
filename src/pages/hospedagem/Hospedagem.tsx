@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CalendarDays, MapPin, Search, Users, X, Building2 } from "lucide-react";
+import { CalendarDays, MapPin, Search, Users, X, Building2, Trash2 } from "lucide-react";
 import HasSearchedHospedagem from "../../components/hospedagem/HasSearchedHospedagem";
 import { formatCurrency } from "../../data/Flights";
 
@@ -63,6 +63,15 @@ const Hospedagem = () => {
         setTimeout(() => {
             document.getElementById("ofertas-hospedagem")?.scrollIntoView({ behavior: "smooth" });
         }, 100);
+    }
+
+    function handleClearSearch() {
+        setDestination("");
+        setCheckIn("");
+        setCheckOut("");
+        setGuests(2);
+        setHasSearched(false);
+        window.history.replaceState(null, "", window.location.pathname);
     }
 
     return (
@@ -138,7 +147,17 @@ const Hospedagem = () => {
                                 />
                             </label>
 
-                            <div className="lg:col-span-2 flex items-end">
+                            <div className="lg:col-span-2 flex items-end gap-2">
+                                {hasSearched && (
+                                    <button
+                                        type="button"
+                                        onClick={handleClearSearch}
+                                        title="Limpar busca"
+                                        className="flex items-center justify-center rounded-xl border border-zinc-700 bg-zinc-800 px-3 py-3.5 font-bold text-zinc-300 transition hover:bg-zinc-700 hover:text-white"
+                                    >
+                                        <Trash2 size={18} />
+                                    </button>
+                                )}
                                 <button
                                     type="submit"
                                     className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-lime px-5 py-3.5 font-bold text-brand-dark-bg transition hover:bg-brand-lime-hover shadow-lg shadow-brand-lime/10"
@@ -153,7 +172,11 @@ const Hospedagem = () => {
 
                 {/* Exibido somente após o usuário buscar */}
                 {hasSearched && (
-                    <HasSearchedHospedagem searchInfo={searchInfo} onSelectHotel={setSelectedHotel} />
+                    <HasSearchedHospedagem
+                        searchInfo={searchInfo}
+                        onSelectHotel={setSelectedHotel}
+                        onClearSearch={handleClearSearch}
+                    />
                 )}
             </main>
 
